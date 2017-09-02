@@ -1,0 +1,26 @@
+# for /f "eol=# delims=, tokens=1,2,3" %i in (yljg_list.txt) do (@db2cmd /c ex_tt.bat %i %j %k)
+# for /f "eol=# delims=, tokens=1,2,3" %i in (yljg_list.txt) do @echo %i %j %k
+# #ºÅÎª×¢ÊÍ
+
+QZ_SE,A02,A-02
+QZ_SS,A03,A-03
+QZ_FY,A06,A-06
+QZ_ZX,A07,A-07
+QZ_GB,A08,A-08
+QZ_MB,A09,A-09
+QZ_KQ,A10,A-10
+QZ_TJ,A11,A-11
+QZ_CY,A12,A-12
+QZ_YA,A13,A-13
+QZ_XY,A14,A-14
+QZ_ZC,A15,A-15
+QZ_LS,A16,A-16
+QZ_HS,A17,A-17
+QZ_NZ,A19,A-19
+QZ_YD,A30,A-30
+QZ_ZS,A35,A-35
+QZ_SW,A36,A-36
+QZ_NS,A37,A-37
+QZ_LK,A41,A-41
+QZ_PF,E01,E-01
+QZ_SL,E07,E-07
