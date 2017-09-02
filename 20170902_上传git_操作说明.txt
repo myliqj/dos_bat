@@ -1,0 +1,274 @@
+
+2017-09-02 myliqj
+
+例子：dos_bat
+
+1、在指定目录建立git库
+ <1 图形界面> 右键->Git GUI Here,点“Create New Repository”，录入选择）目录，点“Create”按钮。
+    >操作 添加, 选择左边 "Unstaged Changes" 的文件，选择菜单 "Commit->Stage to Commit"，添加到本地库
+    >操作 提交, 右下角"Commit Message"，录入消息"第一次提交" ,选择 菜单"Commit->Commit"左右下角按钮“Commit” ，将文件commit到本地仓库
+
+ <2 命令行> 右键->Git Bash Here 或 直接命令行 cmd （git.exe 目录要增加到PATH ）
+   命令，先转到指定目录 cd /d 指定目录
+   git init -- 新建一个本地仓库
+   git add . -- 将所有文件添加到仓库中
+   git commit -m "first commit" -- 将文件commit到本地仓库
+
+
+2、在远程建立仓库
+  >登陆 https://github.com
+  >菜单“new repository” （右上角的 + 号下的菜单）
+  >Repository name 录入 dos_bat
+  >Description 录入说明文字“一些命令行的例子及使用说明等。”
+  > 选择“Initialize this repository with a README”
+  点击“Create repository”按钮，建立远程仓库。
+
+  **在Github中创建了一个Repository之后，会给你列出如何将自己本地项目Push到Github中的命令行全部给列出来
+
+
+3、本地与远程建立关联，本地推送到远程
+  关联
+  <建立关联> git remote add dos_bat https://github.com/myliqj/dos_bat.git
+    ** 添加后，远程库的名字就是origin（本例子使用了项目名 dos_bat），这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+  <查看关联> git remote -v
+  <删除关联> git remote remove dos_bat
+
+  推送
+  (注：由于远程建立时已有文件 README.MD ，需要先拉到本地，才能推送上去
+   先拉 README.MD 到本地：git pull --rebase dos_bat master
+   如果不处理远程文件，会报错：error: failed to push some refs to 'https://github.com/myliqj/dos_bat'
+  )
+  <本地全部推送> git push -u dos_bat master
+    要录入用户及密码
+  ** 加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+  ** 一般仅第一次使用-u，之后使用 git push dos_bat master 即可
+
+
+git status 可以让我们时刻掌握仓库当前的状态，比如是否有文件删除了
+git config --list 显示所有配置信息 
+git reflog 查看命令历史
+git log 查看提交历史
+
+http://www.cnblogs.com/Chenshuai7/p/5485728.html
+GIT——总结.1
+
+http://www.cnblogs.com/Chenshuai7/p/5485734.html
+Github 简明教程
+
+
+参考：
+
+http://blog.csdn.net/qingfeng812/article/details/51382521
+git 本地项目推送到远程仓库（或者仓库分支）Window版-01
+
+初始化项目git init
+
+确保安装了git
+在项目根目录下进入 git命令行
+使用git init 命令
+使用 git add .命令
+使用 git commit -m “提交注释” 命令
+
+两种情况
+远程分支没有建立
+  git remote add [remote-name] [remote-url-address]
+  例如：git remote add origin1 https://gitlab.com/Arisono/AisenWeiBo.git
+
+远程分支已经存在,我们可以直接推送代码
+  git push [remote-name] [branch-name]
+  例如：git push origin master
+
+查看本地分支信息 git branch -v 
+查看远程分支信息 git remote -v
+新建远程分支  git remote add [remote-name] [remote-url-address]
+推送项目到远程分支  git push [remote-name] [branch-name]
+
+注意点
+远程仓库名称问题
+
+远程仓库名称可以是github，也可以是gitlab，也可以是其它的；
+这里暂时没有考虑到已有项目推送到远程仓库出现冲突的情况；
+如果是本地分支推送到指定远程仓库指定的分支，使用命令：git push origin test:master // 提交本地test分支作为远程的master分支
+代码文件的几种状态
+
+unstaged - git仓库中没有此文件的相关记录（.gitignore需要这种状态才能有用，后面博文详细介绍）
+modified - git仓库中有这个文件的记录，并且此文件当前有改动
+staged - 追加,删除或修改的文件被暂时保存，这些追加,删除和修改并没有提交到git仓库
+commited - 追加或修改的文件被提交到本地git仓库（git仓库中大部分都是这种文件，所以git status不显示这些文件）
+
+
+http://www.cnblogs.com/Chenshuai7/p/5488181.html
+git——添加远程库
+
+小结
+
+要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+分布式版本系统的最大好处之一是在本地工作完全不需要考虑远程库的存在，也就是有没有联网都可以正常工作，而SVN在没有联网的时候是拒绝干活的！当有网络的时候，再把本地提交推送一下就完成了同步，真是太方便了！
+
+----------------- logs -----------dos_bat------一些命令行的日志情况-----------
+
+
+
+
+Microsoft Windows [版本 6.1.7601]
+版权所有 (c) 2009 Microsoft Corporation。保留所有权利。
+
+2017/09/02 15:12:28.15>git config
+usage: git config [<options>]
+
+Config file location
+    --global              use global config file
+    --system              use system config file
+    --local               use repository config file
+    -f, --file <file>     use given config file
+    --blob <blob-id>      read config from given blob object
+
+Action
+    --get                 get value: name [value-regex]
+    --get-all             get all values: key [value-regex]
+    --get-regexp          get values for regexp: name-regex [value-regex]
+    --get-urlmatch        get value specific for the URL: section[.var] URL
+    --replace-all         replace all matching variables: name value [value_regex]
+    --add                 add a new variable: name value
+    --unset               remove a variable: name [value-regex]
+    --unset-all           remove all matches: name [value-regex]
+    --rename-section      rename section: old-name new-name
+    --remove-section      remove a section: name
+    -l, --list            list all
+    -e, --edit            open an editor
+    --get-color           find the color configured: slot [default]
+    --get-colorbool       find the color setting: slot [stdout-is-tty]
+
+Type
+    --bool                value is "true" or "false"
+    --int                 value is decimal number
+    --bool-or-int         value is --bool or --int
+    --path                value is a path (file or directory name)
+
+Other
+    -z, --null            terminate values with NUL byte
+    --name-only           show variable names only
+    --includes            respect include directives on lookup
+ 
+2017/09/02 15:12:42.67>git config --global user.name
+myliqj
+
+2017/09/02 15:13:23.02>git config --global user.email
+52018365@qq.com
+
+2017/09/02 15:13:41.59>cd /d G:\remote_git\dos_bat
+
+2017/09/02 15:37:28.33>git push -u origin master
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+2017/09/02 15:39:23.25>git remote -v
+dos_bat https://github.com/myliqj/dos_bat (fetch)
+dos_bat https://github.com/myliqj/dos_bat (push)
+
+2017/09/02 15:39:58.86>git branch -v
+* master 74db2e1 第一次提交
+
+Warning: Your console font probably doesn't support Unicode. If you experience strange characters in the output, conside
+r switching to a TrueType font such as Consolas!
+
+2017/09/02 15:40:12.52>git push dos_bat master
+Username for 'https://github.com': myliqj
+Password for 'https://myliqj@github.com':
+To https://github.com/myliqj/dos_bat
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/myliqj/dos_bat'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2017/09/02 15:41:04.71>git remote -v
+
+2017/09/02 15:42:49.21>git remote add dos_bat https://github.com/myliqj/dos_bat
+
+2017/09/02 15:44:04.56>git remote -v
+dos_bat https://github.com/myliqj/dos_bat (fetch)
+dos_bat https://github.com/myliqj/dos_bat (push)
+
+2017/09/02 15:44:07.40>git push -u dos_bat master
+Username for 'https://github.com': myliqj
+Password for 'https://myliqj@github.com':
+To https://github.com/myliqj/dos_bat
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/myliqj/dos_bat'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2017/09/02 15:45:00.52>git remote --help
+Launching default browser to display HTML ...
+
+2017/09/02 15:45:59.27>git remote remove dos_bat
+
+2017/09/02 15:46:18.09>git remote add dos_bat https://github.com/myliqj/dos_bat.git
+
+2017/09/02 15:46:24.34>git push -u dos_bat master
+Username for 'https://github.com': myliqj
+Password for 'https://myliqj@github.com':
+To https://github.com/myliqj/dos_bat.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/myliqj/dos_bat.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2017/09/02 15:46:39.04>git pull --rebase origin master
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+2017/09/02 15:47:54.91>git pull --rebase dos_bat master
+warning: no common commits
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/myliqj/dos_bat
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> dos_bat/master
+First, rewinding head to replay your work on top of it...
+Applying: 第一次提交
+
+Warning: Your console font probably doesn't support Unicode. If you experience strange characters in the output, conside
+r switching to a TrueType font such as Consolas!
+
+2017/09/02 15:48:12.40>git push -u dos_bat master
+Username for 'https://github.com': myliqj
+Password for 'https://myliqj@github.com':
+Counting objects: 266, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (254/254), done.
+Writing objects: 100% (266/266), 1.05 MiB | 24.00 KiB/s, done.
+Total 266 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), done.
+To https://github.com/myliqj/dos_bat.git
+   8663f7d..c95abc2  master -> master
+Branch master set up to track remote branch master from dos_bat.
+
+2017/09/02 15:52:00.58>git remote -v
+dos_bat https://github.com/myliqj/dos_bat.git (fetch)
+dos_bat https://github.com/myliqj/dos_bat.git (push)
+
+2017/09/03  0:50:47.41>
+
+
+
+  
