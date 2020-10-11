@@ -1,0 +1,14 @@
+bat文件自动以管理员身份运行
+
+ 把这段写在bat文件的前头即可 
+
+%1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&&exit cd /d "%~dp0"
+
+ 
+
+下面附段reg文件，把cmd这样的东西自动以管理员运行
+
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]
+"c:\\windows\\system32\\cmd.exe"="RUNASADMIN" 
